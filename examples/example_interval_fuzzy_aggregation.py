@@ -1,12 +1,13 @@
 import simpful as sf
-from numpy import prod
+import numpy as np
+# from numpy import prod
 
 from ifis.interval_aggregations import IntervalFuzzyAggregator
 from ifis.interval_fuzzy_sets import IntervalFuzzySet
 
 
 def aProduct(memberships):
-    return prod(memberships, axis=0)
+    return np.prod(memberships, axis=0)
 
 
 if __name__ == "__main__":

@@ -12,14 +12,14 @@ S_2 = IntervalFuzzySet(function_start=Triangular_MF_2(a=0, b=5, c=10), term='goo
 S_3 = IntervalFuzzySet(function_start=Triangular_MF_2(a=5, b=10, c=10), term='excellent')
 # iFS.add_linguistic_variable("Service", IntervalLinguisticVariable([S_1, S_2, S_3], concept="Service quality", universe_of_discourse=[0, 10]))
 iLV_1 = IntervalLinguisticVariable([S_1, S_2, S_3], concept="Service quality", universe_of_discourse=[0, 10])
-iLV_1.plot()
+# iLV_1.plot()
 iFS.add_linguistic_variable("Service", iLV_1)
 
 F_1 = IntervalFuzzySet(function_start=Triangular_MF_2(a=0, b=0, c=10), term='rancid')
 F_2 = IntervalFuzzySet(function_start=Triangular_MF_2(a=0, b=10, c=10), term='delicious')
 # iFS.add_linguistic_variable("Food", IntervalLinguisticVariable([F_1, F_2], concept="Food quality", universe_of_discourse=[0, 10]))
 iLV_2 = IntervalLinguisticVariable([F_1, F_2], concept="Food quality", universe_of_discourse=[0, 10])
-iLV_2.plot()
+# iLV_2.plot()
 iFS.add_linguistic_variable("Food", iLV_2)
 
 # Define output crisp values

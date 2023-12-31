@@ -8,19 +8,24 @@ from ifis.interval_linguistic_variable import *
 iFS = IntervalFuzzySystem()
 
 # Define interval fuzzy sets and interval linguistic variables
-S_1 = IntervalFuzzySet(function_start=Triangular_MF(a=0, b=0, c=5), function_end=Trapezoidal_MF(a=1, b=1, c=1, d=6), term='poor')
-S_2 = IntervalFuzzySet(function_start=Triangular_MF(a=0, b=5, c=10), function_end=Trapezoidal_MF(a=0, b=4, c=6, d=10), term='good')
-S_3 = IntervalFuzzySet(function_start=Trapezoidal_MF(a=4, b=9, c=10, d=10), function_end=Triangular_MF(a=5, b=10, c=10), term='excellent')
+S_1 = IntervalFuzzySet(function_start=Triangular_MF(a=0, b=0, c=5), function_end=Trapezoidal_MF(a=1, b=1, c=1, d=6),
+                       term='poor')
+S_2 = IntervalFuzzySet(function_start=Triangular_MF(a=0, b=5, c=10), function_end=Trapezoidal_MF(a=0, b=4, c=6, d=10),
+                       term='good')
+S_3 = IntervalFuzzySet(function_start=Trapezoidal_MF(a=4, b=9, c=10, d=10), function_end=Triangular_MF(a=5, b=10, c=10),
+                       term='excellent')
 # iFS.add_linguistic_variable("Service", IntervalLinguisticVariable([S_1, S_2, S_3], concept="Service quality", universe_of_discourse=[0, 10]))
 iLV_1 = IntervalLinguisticVariable([S_1, S_2, S_3], concept="Service quality", universe_of_discourse=[0, 10])
-iLV_1.plot()
+# iLV_1.plot()
 iFS.add_linguistic_variable("Service", iLV_1)
 
-F_1 = IntervalFuzzySet(function_start=Triangular_MF(a=0, b=0, c=8), function_end=Trapezoidal_MF(a=1, b=1, c=2, d=10), term='rancid')
-F_2 = IntervalFuzzySet(function_start=Trapezoidal_MF(a=0, b=8, c=10, d=10), function_end=Triangular_MF(a=2, b=10, c=10), term='delicious')
+F_1 = IntervalFuzzySet(function_start=Triangular_MF(a=0, b=0, c=8), function_end=Trapezoidal_MF(a=1, b=1, c=2, d=10),
+                       term='rancid')
+F_2 = IntervalFuzzySet(function_start=Trapezoidal_MF(a=0, b=8, c=10, d=10), function_end=Triangular_MF(a=2, b=10, c=10),
+                       term='delicious')
 # iFS.add_linguistic_variable("Food", IntervalLinguisticVariable([F_1, F_2], concept="Food quality", universe_of_discourse=[0, 10]))
 iLV_2 = IntervalLinguisticVariable([F_1, F_2], concept="Food quality", universe_of_discourse=[0, 10])
-iLV_2.plot()
+# iLV_2.plot()
 iFS.add_linguistic_variable("Food", iLV_2)
 
 # Define output crisp values
