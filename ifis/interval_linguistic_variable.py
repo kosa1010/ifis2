@@ -10,11 +10,14 @@ try:
 except ImportError:
     matplotlib = False
 
+"""
+Module for 
+"""
+
 
 class IntervalLinguisticVariable(sf.LinguisticVariable):
     """
     Class which represent new interval linguistic variable
-    (extended of :class:'simpful.LinguisticVariable')
 
     :param FS_list: a list of IVFS instances
     :param concept: a string providing a brief description of the concept represented by the linguistic variable,
@@ -22,6 +25,7 @@ class IntervalLinguisticVariable(sf.LinguisticVariable):
     :param universe_of_discourse: a list of two elements, specifying min and max of the universe of discourse.
         Optional, but it must be specified to exploit plotting facilities.
     """
+
     def __init__(self, FS_list=[], concept=None, universe_of_discourse=None):
         """
         Constructor method
@@ -37,8 +41,8 @@ class IntervalLinguisticVariable(sf.LinguisticVariable):
     def get_universe_of_discourse(self):
         """
         This method provides the leftmost and rightmost values of the universe of discourse of the linguistic variable.
-        :return: the two boundary values of the universe of discourse.
-        :rtype: tuple
+            :return: the two boundary values of the universe of discourse.
+            :rtype: tuple
         """
         if self._universe_of_discourse is not None:
             return self._universe_of_discourse
@@ -56,11 +60,10 @@ class IntervalLinguisticVariable(sf.LinguisticVariable):
     def draw(self, ax, TGT=None, highlight=None):
         """
         This method returns a matplotlib ax, representing all IVFS contained in the liguistic variable.
-
-        :param ax: the matplotlib axis to plot to.
-        :param TGT: show the memberships of a specific element of discourse TGT in the figure.
-        :param highlight: string, indicating the linguistic term/fuzzy set to highlight in the plot.
-        :return: A matplotlib axis, representing all IVFS contained in the liguistic variable.
+            :param ax: the matplotlib axis to plot to.
+            :param TGT: show the memberships of a specific element of discourse TGT in the figure.
+            :param highlight: string, indicating the linguistic term/fuzzy set to highlight in the plot.
+            :return: A matplotlib axis, representing all IVFS contained in the liguistic variable.
         """
         if not matplotlib:
             raise Exception("ERROR: please, install matplotlib for plotting facilities")
@@ -106,10 +109,10 @@ class IntervalLinguisticVariable(sf.LinguisticVariable):
     def plot(self, outputfile="", TGT=None, highlight=None):
         """
         Shows a plot representing all IVFS contained in the liguistic variable.
-        :param outputfile: path and filename where the plot must be saved
-        :type outputfile: str
-        :param TGT: show the memberships of a specific element of discourse TGT in the figure
-        :param highlight: string, indicating the linguistic term/fuzzy set to highlight in the plot.
+            :param outputfile: path and filename where the plot must be saved
+            :type outputfile: str
+            :param TGT: show the memberships of a specific element of discourse TGT in the figure
+            :param highlight: string, indicating the linguistic term/fuzzy set to highlight in the plot.
         """
         if not matplotlib:
             raise Exception("ERROR: please, install matplotlib for plotting facilities")

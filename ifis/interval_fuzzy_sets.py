@@ -22,10 +22,10 @@ class MF_object_2(object):
     def __call__(self, x):
         """
         Overriding the __call__ method
-        :param x:
-        :type x: tuple,int
-        :return: membership x to define function
-        :rtype: tuple, int
+            :param x:
+            :type x: tuple,int
+            :return: membership x to define function
+            :rtype: tuple, int
         """
         if type(x) is tuple:
             ret1 = self._execute(x[0])
@@ -38,13 +38,12 @@ class MF_object_2(object):
 class Triangular_MF_2(MF_object_2):
     """
     Class representing Interval-Valued Triangular Membership Function
-    (extended of :class:'ifis.interval_fuzzy_sets.MF_object_2')
-    :param a: y coordinate for point on start Interval-Valued Triangular Membership Function
-    :type a: float
-    :param b: y coordinate for point on top Interval-Valued Triangular Membership Function
-    :type b: float
-    :param c: y coordinate for point on end Interval-Valued Triangular Membership Function
-    :type c: float
+        :param a: y coordinate for point on start Interval-Valued Triangular Membership Function
+        :type a: float
+        :param b: y coordinate for point on top Interval-Valued Triangular Membership Function
+        :type b: float
+        :param c: y coordinate for point on end Interval-Valued Triangular Membership Function
+        :type c: float
     """
 
     def __init__(self, a=0, b=0.5, c=1):
@@ -62,10 +61,10 @@ class Triangular_MF_2(MF_object_2):
     def _execute(self, x):
         """
         Return membership x to created function
-        :param x: checking this membership to function
-        :type x: float
-        :return: membership x to define function
-        :rtype: float
+            :param x: checking this membership to function
+            :type x: float
+            :return: membership x to define function
+            :rtype: float
         """
         if x < self._b:
             if self._a != self._b:
@@ -81,8 +80,8 @@ class Triangular_MF_2(MF_object_2):
     def __repr__(self):
         """
         Interval-Valued Triangular Membership Function string description
-        :return: String description of membership function
-        :rtype: str
+            :return: String description of membership function
+            :rtype: str
         """
         return "<Triangular MF 2 (%f, %f, %f)>" % (self._a, self._b, self._c)
 
@@ -90,8 +89,7 @@ class Triangular_MF_2(MF_object_2):
 class Trapezoidal_MF_2(MF_object_2):
     """
     Class representing Interval-Valued Trapezoidal Membership Function
-    (extended of :class:'ifis.interval_fuzzy_sets.MF_object_2')
-    :param a: y coordinate for point on start Interval-Valued Trapezoidal Membership Function
+        :param a: y coordinate for point on start Interval-Valued Trapezoidal Membership Function
         :type a: float
         :param b: y coordinate for point on first point of top edge Interval-Valued Trapezoidal Membership Function
         :type b: float
@@ -113,10 +111,10 @@ class Trapezoidal_MF_2(MF_object_2):
     def _execute(self, x):
         """
         Return membership x to created function
-        :param x: checking this membership to function
-        :type x: float
-        :return: membership x to define function
-        :rtype: float
+            :param x: checking this membership to function
+            :type x: float
+            :return: membership x to define function
+            :rtype: float
         """
         if x < self._b:
             if self._a != self._b:
@@ -134,15 +132,15 @@ class Trapezoidal_MF_2(MF_object_2):
     def __repr__(self):
         """
         Interval-Valued Trapezoidal Membership Function string description
-        :return: description of membership function
-        :rtype: str
+            :return: description of membership function
+            :rtype: str
         """
         return "<Trapezoidal MF 2 (%f, %f, %f, %f)>" % (self._a, self._b, self._c, self._d)
 
 
 class IntervalFuzzySet(sf.FuzzySet):
     """
-    Class representation Interval-Valued Fuzzy Set (IVFS) which is extension of :class:'simpful.FuzzySet'
+    Class representation Interval-Valued Fuzzy Set (IVFS).
         :param function_start: start function to define a IVFS. Supports pre-implemented membership functions
             Trapezoidal_MF_2, Triangular_MF_2 or user-defined functions, defaults to None
         :type function_start: MF_object_2
@@ -217,10 +215,9 @@ class IntervalFuzzySet(sf.FuzzySet):
     def get_value_cut(self, v, cut):
         """
         Function for return the membership value of v to this IVFS, capped to the cut value.
-
-        :param v: element of the universe of discourse
-        :param cut: alpha cut of the IVFS
-        :rtype: float
+            :param v: element of the universe of discourse
+            :param cut: alpha cut of the IVFS
+            :rtype: float
         """
         if type(cut) is numpy.ndarray and cut.size > 1:
             return min(cut[0], self.get_value(v)[0]), min(cut[1], self.get_value(v)[1])
@@ -248,10 +245,9 @@ class IntervalFuzzySet(sf.FuzzySet):
     def get_value(self, v):
         """
         Return the membership end value of v to this IVFS
-
-        :param v: element of the universe of discourse
-        :return: The membership end value of v to this IVFS
-        :rtype: tuple
+            :param v: element of the universe of discourse
+            :return: The membership end value of v to this IVFS
+            :rtype: tuple
         """
         if self._type == "function" and self._type_end == "function":
             return [self._funpointer(v), self._funpointer_end(v)]
@@ -281,12 +277,12 @@ class IntervalFuzzySet(sf.FuzzySet):
     def set_points_interval(self, points_start, points_end):
         """
         Changes points of the point-based IVFS.
-        :param points_start: a list of points to define lower bound of IVFS. Each point is defined as a list of two
-            coordinates in the universe of discourse/membership degree space.
-        :type points_start: list
-        :param points_end: a list of points to define upper bound of IVFS. Each point is defined as a list of two
-            coordinates in the universe of discourse/membership degree space.
-        :type points_end: list
+            :param points_start: a list of points to define lower bound of IVFS. Each point is defined as a list of two
+                coordinates in the universe of discourse/membership degree space.
+            :type points_start: list
+            :param points_end: a list of points to define upper bound of IVFS. Each point is defined as a list of two
+                coordinates in the universe of discourse/membership degree space.
+            :type points_end: list
         """
         if len(points_start) < 2 or len(points_end < 2):
             raise Exception("ERROR: more than one point required")

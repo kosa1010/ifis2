@@ -2,23 +2,27 @@ import simpful as sf
 import re
 from simpful.fuzzy_sets import MF_object
 from numpy import array, linspace
-from ifis.interval_rule_parsing import interval_recursive_parse, interval_preparse, interval_postparse
+from .interval_rule_parsing import interval_recursive_parse, interval_preparse, interval_postparse
 from collections import defaultdict
+
+"""
+Module for 
+"""
 
 
 class IntervalFuzzySystem(sf.FuzzySystem):
     """
-    Class which creates a new interval valued fuzzy system (IVFS) it is extension of :class:'simpful.FuzzySystem'
-    :param type_system: change type of system able to check 1 and 2 (2 is for special case of intervals when lower
-        and upper bound of intervals is the same), default to 1
-    :type type_system: int
-    :param show_banner: toggles display of banner
-    :type type_system: bool
-    :param sanitize_input: sanitize variables' names to eliminate non-accepted characters (under development).
-    :param verbose: toggles verbose mode
-    :type verbose: bool
-    :param operators: specifying interval fuzzy operators to be used instead of defaults. Currently supported operators: 'AND_PRODUCT'.
-    :type operators: list
+    Class which creates a new interval valued fuzzy system (IVFS).
+        :param type_system: change type of system able to check 1 and 2 (2 is for special case of intervals when lower
+            and upper bound of intervals is the same), default to 1
+        :type type_system: int
+        :param show_banner: toggles display of banner
+        :type type_system: bool
+        :param sanitize_input: sanitize variables' names to eliminate non-accepted characters (under development).
+        :param verbose: toggles verbose mode
+        :type verbose: bool
+        :param operators: specifying interval fuzzy operators to be used instead of defaults. Currently supported operators: 'AND_PRODUCT'.
+        :type operators: list
     """
 
     def __init__(self, type_system=1, operators=None, show_banner=True, sanitize_input=False, verbose=True):
@@ -28,12 +32,12 @@ class IntervalFuzzySystem(sf.FuzzySystem):
     def set_variable(self, name, value, verbose=False):
         """
         Sets the interval value of a linguistic variable.
-        :param name: name of the linguistic variables to be set
-        :type name: str
-        :param value: interval value to be set
-        :type value: tuple
-        :param verbose: toggles verbose mode
-        :type verbose: bool
+            :param name: name of the linguistic variables to be set
+            :type name: str
+            :param value: interval value to be set
+            :type value: tuple
+            :param verbose: toggles verbose mode
+            :type verbose: bool
         """
         if type(value) is tuple:
             if self._sanitize_input: name = self._sanitize(name)
@@ -50,10 +54,10 @@ class IntervalFuzzySystem(sf.FuzzySystem):
     def add_rules(self, rules, verbose=False):
         """
         Adds new interval valued fuzzy rules (IVFR) to the IVFS.
-        :param rules: list of interval valued fuzzy rules to be added. Rules must be specified as strings
-        :type rules: list of str
-        :param verbose: toggles verbose mode
-        :type verbose: bool
+            :param rules: list of interval valued fuzzy rules to be added. Rules must be specified as strings
+            :type rules: list of str
+            :param verbose: toggles verbose mode
+            :type verbose: bool
         """
         for rule in rules:
 
@@ -304,16 +308,16 @@ class IntervalFuzzySystem(sf.FuzzySystem):
     def Sugeno_interval_inference(self, terms=None, ignore_errors=False, ignore_warnings=False, verbose=False):
         """
         Performs Sugeno interval fuzzy inference.
-        :param terms: names of the variables on which inference must be performed
-            If empty, all variables appearing in the consequent of a IVFR are inferred
-        :type terms: list
-        :param ignore_errors: toggles the raising of errors during the inference
-        :type ignore_errors: bool
-        :param ignore_warnings: toggles the raising of warnings during the inference
-        :type ignore_warnings: bool
-        :param verbose: toggles verbose mode
-        :type verbose: bool
-        :return: a dictionary, containing as keys the variables' names and as values their interval inferred values
+            :param terms: names of the variables on which inference must be performed
+                If empty, all variables appearing in the consequent of a IVFR are inferred
+            :type terms: list
+            :param ignore_errors: toggles the raising of errors during the inference
+            :type ignore_errors: bool
+            :param ignore_warnings: toggles the raising of warnings during the inference
+            :type ignore_warnings: bool
+            :param verbose: toggles verbose mode
+            :type verbose: bool
+            :return: a dictionary, containing as keys the variables' names and as values their interval inferred values
         """
         if self._sanitize and terms is not None:
             terms = [self._sanitize(term) for term in terms]
@@ -349,19 +353,19 @@ class IntervalFuzzySystem(sf.FuzzySystem):
                                    verbose=False):
         """
         Performs Sugeno interval fuzzy inference.
-        :param terms: names of the variables on which inference must be performed
-            If empty, all variables appearing in the consequent of a IVFR are inferred
-        :type terms: list
-        :param subdivisions: the number of integration steps to be performed for calculating fuzzy set area,
-            defaults to 1000.
-        :type subdivisions: int
-        :param ignore_errors: toggles the raising of errors during the inference
-        :type ignore_errors: bool
-        :param ignore_warnings: toggles the raising of warnings during the inference
-        :type ignore_warnings: bool
-        :param verbose: toggles verbose mode
-        :type verbose: bool
-        :return: a dictionary, containing as keys the variables' names and as values their interval inferred values
+            :param terms: names of the variables on which inference must be performed
+                If empty, all variables appearing in the consequent of a IVFR are inferred
+            :type terms: list
+            :param subdivisions: the number of integration steps to be performed for calculating fuzzy set area,
+                defaults to 1000.
+            :type subdivisions: int
+            :param ignore_errors: toggles the raising of errors during the inference
+            :type ignore_errors: bool
+            :param ignore_warnings: toggles the raising of warnings during the inference
+            :type ignore_warnings: bool
+            :param verbose: toggles verbose mode
+            :type verbose: bool
+            :return: a dictionary, containing as keys the variables' names and as values their interval inferred values
         """
         if self._sanitize and terms is not None:
             terms = [self._sanitize(term) for term in terms]
@@ -396,3 +400,58 @@ class IntervalFuzzySystem(sf.FuzzySystem):
                 result[name] = self._variables[name]
 
         return result
+
+
+if __name__ == "__main__":
+    pass
+    # iFS = IntervalFuzzySystem()
+    #
+    # # Define fuzzy sets and linguistic variables
+    # S_1 = IntervalFuzzySet(function_start=Triangular_MF(a=0, b=0, c=5), function_end=Trapezoidal_MF(a=1, b=1, c=1, d=6),
+    #                        term='poor')
+    # S_2 = IntervalFuzzySet(function_start=Triangular_MF(a=0, b=5, c=10),
+    #                        function_end=Trapezoidal_MF(a=0, b=4, c=6, d=10),
+    #                        term='good')
+    # S_3 = IntervalFuzzySet(function_start=Trapezoidal_MF(a=4, b=9, c=10, d=10),
+    #                        function_end=Triangular_MF(a=5, b=10, c=10),
+    #                        term='excellent')
+    # # iFS.add_linguistic_variable("Service", LinguisticVariable([S_1, S_2, S_3], concept="Service quality", universe_of_discourse=[0,10]))
+    # iLV_1 = IntervalLinguisticVariable([S_1, S_2, S_3], concept="Service quality", universe_of_discourse=[0, 10])
+    # # iLV_1.plot()
+    # iFS.add_linguistic_variable("Service", iLV_1)
+    #
+    # F_1 = IntervalFuzzySet(function_start=Triangular_MF(a=0, b=0, c=8),
+    #                        function_end=Trapezoidal_MF(a=1, b=1, c=2, d=10),
+    #                        term='rancid')
+    # F_2 = IntervalFuzzySet(function_start=Trapezoidal_MF(a=0, b=8, c=10, d=10),
+    #                        function_end=Triangular_MF(a=2, b=10, c=10),
+    #                        term='delicious')
+    # # iFS.add_linguistic_variable("Food", LinguisticVariable([F_1, F_2], concept="Food quality", universe_of_discourse=[0,10]))
+    # iLV_2 = IntervalLinguisticVariable([F_1, F_2], concept="Food quality", universe_of_discourse=[0, 10])
+    # # iLV_2.plot()
+    # iFS.add_linguistic_variable("Food", iLV_2)
+    #
+    # # Define output fuzzy sets and linguistic variable
+    # T_1 = IntervalFuzzySet(function_start=Trapezoidal_MF(a=0, b=0, c=1, d=9),
+    #                        function_end=Trapezoidal_MF(a=0, b=0, c=1, d=11), term="small")
+    # T_2 = IntervalFuzzySet(function_start=Triangular_MF(a=0, b=10, c=18), function_end=Triangular_MF(a=2, b=10, c=22),
+    #                        term="average")
+    # T_3 = IntervalFuzzySet(function_start=Trapezoidal_MF(a=8, b=18, c=25, d=25),
+    #                        function_end=Trapezoidal_MF(a=12, b=18, c=25, d=25), term="generous")
+    # # iFS.add_linguistic_variable("Tip", LinguisticVariable([T_1, T_2, T_3], universe_of_discourse=[0,25]))
+    # iLV3 = IntervalLinguisticVariable([T_1, T_2, T_3], concept="Tip", universe_of_discourse=[0, 25])
+    # # iLV3.plot()
+    # iFS.add_linguistic_variable("Tip", iLV3)
+    #
+    # # Define fuzzy rules
+    # R1 = "IF (Service IS poor) OR (Food IS rancid) THEN (Tip IS small)"
+    # R2 = "IF (Service IS good) THEN (Tip IS average)"
+    # R3 = "IF (Service IS excellent) OR (Food IS delicious) THEN (Tip IS generous)"
+    # iFS.add_rules([R1, R2, R3])
+    #
+    # # Set antecedents values
+    # iFS.set_variable("Service", 4)
+    # iFS.set_variable("Food", 8)
+    #
+    # # Perform Mamdani inference and print output
+    # print(iFS.Mamdani_interval_inference(["Tip"]))
