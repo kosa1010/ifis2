@@ -32,7 +32,7 @@ class IntervalFuzzySystem(sf.FuzzySystem):
             :type name: str
             :param value: interval value to be set
             :type value: tuple
-            :param verbose: toggles verbose mode, default to False
+            :param verbose: toggles verbose mode
             :type verbose: bool
         """
         if type(value) is tuple:

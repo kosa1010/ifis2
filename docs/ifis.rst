@@ -1,6 +1,5 @@
 ifis package
 ============
-CZy to si wytla
 
 Submodules
 ----------

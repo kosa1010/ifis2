@@ -36,7 +36,7 @@ extensions = [
     # 'sphinx.ext.linkcode',
 
  #   'sphinx.ext.autosummary',
-    'numpydoc',
+    #'numpydoc',
     #         'rinoh.frontend.sphinx',
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',

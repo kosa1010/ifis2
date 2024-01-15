@@ -7,6 +7,10 @@ from simpful.rule_parsing import find_index_operator, OR, AND, AND_p, NOT
 regex_clause_with_parentheses = re.compile(r"^\([a-z,_,A-Z,0-9]*\s*IS\s*[a-z,_,A-Z,0-9]*\)$")
 regex_clause = re.compile(r"^[a-z,_,A-Z,0-9]*\s*IS\s*[a-z,_,A-Z,0-9]*$")
 
+"""
+Module for 
+"""
+
 
 class IntervalClause(sf.Clause):
     """

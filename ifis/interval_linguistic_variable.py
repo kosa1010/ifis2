@@ -11,7 +11,7 @@ except ImportError:
     matplotlib = False
 
 """
-Module for 
+Module for
 """
 
 
